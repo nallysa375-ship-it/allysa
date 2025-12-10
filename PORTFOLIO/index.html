@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Portfolio Nur Allysa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-a: #eaf6ff;
+            --bg-b: #d8f0ff;
+            --panel: rgba(255, 255, 255, 0.06);
+            --muted: #93a9bf;
+            --accent: #69c6ff;
+            /* soft glowing blue */
+            --text: #f7fcff;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: Poppins, system-ui;
+            background: linear-gradient(180deg, var(--bg-b), #f6fbff);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden
+        }
+
+        /* animated soft blue glow background */
+        .bg-wrap {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            overflow: hidden
+        }
+
+        .glow {
+            position: absolute;
+            inset: -20%;
+            filter: blur(80px) saturate(1);
+            opacity: .9;
+            mix-blend-mode: screen;
+            animation: drift 30s linear infinite
+        }
+
+        .g1 {
+            background: radial-gradient(closest-side, #8fd8ff 0%, transparent 40%);
+            left: -20%;
+            top: -10%;
+            width: 80%;
+            height: 80%
+        }
+
+        .g2 {
+            background: radial-gradient(closest-side, #cfeeff 0%, transparent 30%);
+            right: -10%;
+            bottom: -10%;
+            width: 70%;
+            height: 70%;
+            opacity: .8
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate(-5%, -5%)
+            }
+
+            50% {
+                transform: translate(5%, 5%)
+            }
+
+            100% {
+                transform: translate(-5%, -5%)
+            }
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            z-index: 60
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px
+        }
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), #9be0ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #042433;
+            font-weight: 800;
+            box-shadow: 0 6px 30px rgba(105, 198, 255, 0.18)
+        }
+
+        .brand .name {
+            font-weight: 700;
+            color: #042433
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .nav-links a {
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #042433;
+            font-weight: 600;
+            transition: all .18s
+        }
+
+        .nav-links a:hover {
+            background: rgba(105, 198, 255, 0.12);
+            box-shadow: 0 6px 20px rgba(105, 198, 255, 0.08) inset
+        }
+
+        .nav-links a.active {
+            background: var(--accent);
+            color: #042433;
+            box-shadow: 0 8px 30px rgba(105, 198, 255, 0.22)
+        }
+
+        .nav-links a.download {
+            background: transparent;
+            border: 1px solid rgba(4, 36, 51, 0.06);
+            padding: 8px 12px;
+            border-radius: 10px
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 64px auto;
+            padding: 24px;
+            min-height: 64vh;
+            z-index: 2
+        }
+
+        .container {
+            display: flex;
+            gap: 36px;
+            flex-wrap: wrap;
+            align-items: flex-start
+        }
+
+        .left {
+            flex: 1;
+            min-width: 300px
+        }
+
+        .right {
+            width: 360px;
+            flex-shrink: 0
+        }
+
+        h1 {
+            font-size: 40px;
+            margin: 0 0 10px;
+            color: #042433;
+            text-shadow: 0 6px 28px rgba(105, 198, 255, 0.08)
+        }
+
+        .lead {
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 640px
+        }
+
+        /* polaroid-style photo with glow */
+        .polaroid {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.95));
+            padding: 14px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(4, 36, 51, 0.08);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform .25s
+        }
+
+        .polaroid:hover {
+            transform: translateY(-6px)
+        }
+
+        .frame {
+            width: 320px;
+            height: 320px;
+            border-radius: 12px;
+            background-position: center;
+            background-size: cover;
+            box-shadow: 0 20px 60px rgba(105, 198, 255, 0.14);
+            cursor: pointer
+        }
+
+        .panel {
+            background: var(--panel);
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 18px;
+            color: #042433;
+            box-shadow: 0 8px 30px rgba(4, 36, 51, 0.04)
+        }
+
+        h2 {
+            color: #042433;
+            margin: 0 0 8px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 12px
+        }
+
+        /* lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 20, 30, 0.88);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999
+        }
+
+        .lightbox img {
+            max-width: 92%;
+            max-height: 92%;
+            border-radius: 8px;
+            box-shadow: 0 30px 120px rgba(4, 20, 30, 0.8)
+        }
+
+        /* intro overlay */
+        #intro {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, rgba(10, 45, 70, 0.9), rgba(10, 45, 70, 0.95));
+            z-index: 200;
+            cursor: pointer
+        }
+
+        #intro h2 {
+            font-size: 48px;
+            color: #eaf9ff;
+            margin-bottom: 10px;
+            letter-spacing: 1px
+        }
+
+        #intro p {
+            color: var(--muted)
+        }
+
+        /* music control */
+        #music-btn {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            background: transparent;
+            border: 1px solid rgba(4, 36, 51, 0.06);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #042433;
+            font-weight: 700;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(105, 198, 255, 0.08)
+        }
+
+        #music-btn.playing {
+            background: linear-gradient(135deg, var(--accent), #9be0ff);
+            box-shadow: 0 20px 60px rgba(105, 198, 255, 0.22)
+        }
+
+        #hint {
+            position: fixed;
+            right: 18px;
+            bottom: 86px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #042433;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            display: none;
+            z-index: 200
+        }
+
+        @media(max-width:900px) {
+            .right {
+                width: 100%
+            }
+
+            .frame {
+                width: 240px;
+                height: 240px
+            }
+
+            h1 {
+                font-size: 32px
+            }
+
+            .nav {
+                padding: 10px 14px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-wrap" aria-hidden="true">
+        <div class="glow g1"></div>
+        <div class="glow g2"></div>
+    </div>
+
+    <!-- intro overlay -->
+    <div id="intro" onclick="enterSite()">
+        <h2>Welcome</h2>
+        <p>Tap anywhere to enter</p>
+    </div>
+
+    <header>
+        <div class="nav">
+            <div class="brand">
+                <div class="logo">NA</div>
+                <div class="name">Nur Allysa</div>
+            </div>
+            <nav class="nav-links" id="nav">
+                <a href="#" data-page="home" class="active">Home</a>
+                <a href="#" data-page="about">About</a>
+                <a href="#" data-page="skills">Skills</a>
+                <a href="#" data-page="achievements">Achievements</a>
+                <a href="#" data-page="gallery">Gallery</a>
+                <a href="#" data-page="contact">Contact</a>
+                <a class="download" href="RESUME(1).pdf" target="_blank" style="margin-left:8px">Download CV</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main"></main>
+
+    <!-- lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" alt="enlarged image" />
+    </div>
+
+    <!-- persistent audio -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="Fade Into You.mp3" type="audio/mpeg">
+    </audio>
+    <button id="music-btn" title="Toggle music">Play</button>
+    <div id="hint">If music didn't start, tap anywhere to enable it</div>
+
+    <script>
+        /* ---------- Pages (SPA templates) ---------- */
+        const PAGES = {
+            home: `
+    <section class="container">
+      <div class="left">
+        <h1>Hi! I'm <span>꒰ Nur Allysa ꒱</span></h1>
+        <p class="lead">Diploma student in Information Management at UiTM Segamat. Passionate about records, metadata and creative digital organisation. Explore my achievements and gallery.</p>
+
+        <div class="panel">
+          <h2>Quick Info</h2>
+          <p style="color:var(--muted)">From Kulai, Johor · Diploma (UiTM Segamat)</p>
+          <h3>Contact</h3>
+          <p style="color:var(--muted)">nallysa375@gmail.com · 013-610 8370</p>
+        </div>
+      </div>
+
+      <aside class="right">
+        <div class="polaroid card">
+          <div class="frame" id="home-photo" style="background-image:url('po.jpg')" onclick="openLightbox('po.jpg')"></div>
+        </div>
+      </aside>
+    </section>
+  `,
+            about: `
+    <section>
+      <div class="panel">
+        <h2>About Me</h2>
+        <p style="color:var(--muted)"><strong>Nur Allysa binti Mohd Aidil</strong> — from Kulai, Johor. Currently pursuing a Diploma in Information Management at UiTM Johor (Segamat). Passionate about records, metadata and creative digital work.</p>
+        <h3>Education</h3>
+        <ul style="color:var(--muted);margin-left:18px">
+          <li>Diploma in Information Management — UiTM Johor, Segamat (2023–Present)</li>
+          <li>SMK Bandar Putra (2017–2023) — SPM graduate (Achieved 6A 2B 1C+s with subjects Accounting, Business Studies, and Additional Mathematics)</li>
+          <li>SK Bandar Putra (2011–2016)</li>
+          <li>SK Putra Utama (2010–2011)</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Skills & Tools</h3>
+        <div class="grid">
+          <div style="padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0.9));border-radius:10px;color:#042433"><strong>Microsoft Office</strong><div style="color:var(--muted)">Word, Excel, PowerPoint</div></div>
+          <div style="padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0.9));border-radius:10px;color:#042433"><strong>Design</strong><div style="color:var(--muted)">Photoshop, Canva</div></div>
+          <div style="padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0.9));border-radius:10px;color:#042433"><strong>Video</strong><div style="color:var(--muted)">CapCut</div></div>
+          <div style="padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0.9));border-radius:10px;color:#042433"><strong>Programming</strong><div style="color:var(--muted)">Basic MySQL & C++</div></div>
+        </div>
+      </div>
+    </section>
+  `,
+            skills: `
+    <section>
+      <div class="panel">
+        <h2>Skills</h2>
+        <h3>Technical</h3>
+        <div class="grid">
+          <div style="padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.95));border-radius:10px;color:#042433"><strong>File Management</strong></div>
+          <div style="padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.95));border-radius:10px;color:#042433"><strong>Microsoft Office</strong></div>
+          <div style="padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.95));border-radius:10px;color:#042433"><strong>Adobe Photoshop</strong></div>
+          <div style="padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.95));border-radius:10px;color:#042433"><strong>Canva</strong></div>
+        </div>
+        <h3 style="margin-top:18px">Soft Skills</h3>
+        <ul style="color:var(--muted)"><li>Fast learner & highly adaptable</li><li>Teamwork & communication</li><li>Discipline (experience in marching band & colorguard)</li></ul>
+      </div>
+    </section>
+  `,
+            achievements: `
+    <section>
+      <div class="panel">
+        <h2>Achievements</h2>
+        <p style="color:var(--muted)">Selected highlights from my co-curricular and campus life.</p>
+        <div class="grid">
+          <div class="card" onclick="openLightbox('project1.jpg')" style="cursor:pointer;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.98));border-radius:12px;color:#042433">
+            <div style="height:160px;background:url('project1.jpg') center/cover;border-radius:8px"></div>
+            <h4 style="margin:10px 0 0">UiTM Marching Band — Committee</h4>
+            <p style="color:var(--muted)">Organised events & coordination.</p>
+          </div>
+
+          <div class="card" onclick="openLightbox('project2.jpg')" style="cursor:pointer;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.98));border-radius:12px;color:#042433">
+            <div style="height:160px;background:url('project2.jpg') center/cover;border-radius:8px"></div>
+            <h4 style="margin:10px 0 0">Merdeka Parade 2024</h4>
+            <p style="color:var(--muted)">Participated in Bandar Segamat parade.</p>
+          </div>
+          <div class="card" onclick="openLightbox('project3.jpg')" style="cursor:pointer;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.98));border-radius:12px;color:#042433">
+            <div style="height:160px;background:url('project3.jpg') center/cover;border-radius:8px"></div>
+            <h4 style="margin:10px 0 0">Greenix Colorguard</h4>
+            <p style="color:var(--muted)">Performed & choreographed events.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  `,
+            gallery: `
+    <section>
+      <div class="panel">
+        <h2>Gallery</h2>
+        <div class="grid">
+          <div class="card" onclick="openLightbox('o.jpg')" style="cursor:pointer;padding:0;background:transparent;border-radius:12px">
+            <div style="height:160px;background:url('o.jpg') center/cover;border-radius:8px"></div><div style="padding:10px;color:#042433">UiTM Marching Band</div>
+          </div>
+          <div class="card" onclick="openLightbox('.jpg')" style="cursor:pointer;padding:0;background:transparent;border-radius:12px">
+            <div style="height:160px;background:url('.jpg') center/cover;border-radius:8px"></div><div style="padding:10px;color:#042433">Greenix Colorguard</div>
+          </div>
+          <div class="card" onclick="openLightbox('.jpg')" style="cursor:pointer;padding:0;background:transparent;border-radius:12px">
+            <div style="height:160px;background:url('.jpg') center/cover;border-radius:8px"></div><div style="padding:10px;color:#042433">Merdeka Parade 2024</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `,
+            contact: `
+    <section>
+      <div class="panel">
+        <h2>Contact</h2>
+        <p style="color:var(--muted)">Email: <a href="mailto:nallysa375@gmail.com" style="color:var(--accent);text-decoration:none">nallysa375@gmail.com</a><br>Phone: 013-610 8370</p>
+        <hr style="border:none;border-top:1px solid rgba(4,36,51,0.04);margin:18px 0">
+        <h3>Reference</h3>
+        <p style="color:var(--muted)"><strong>Dr Ahmad Fuzi Bin Md Ajis</strong><br>Undergraduate Program Coordinator, Faculty of Information Management, UiTM Segamat<br>07–935 2755 • <a href="mailto:ahmadfuzi@uitm.edu.my" style="color:var(--accent);text-decoration:none">ahmadfuzi@uitm.edu.my</a></p>
+      </div>
+    </section>
+  `
+        };
+
+        /* ---------- Router (load pages without reload) ---------- */
+        const main = document.getElementById('main');
+        function loadPage(key) {
+            if (!PAGES[key]) key = 'home';
+            main.innerHTML = PAGES[key];
+            // set active nav link
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const el = document.querySelector('.nav-links a[data-page="' + key + '"]');
+            if (el) el.classList.add('active');
+            history.replaceState(null, '', '#' + key);
+            // scroll top smooth
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+            a.addEventListener('click', (e) => { e.preventDefault(); const k = a.dataset.page; loadPage(k); });
+        });
+        // initial load from hash (or home)
+        const start = location.hash ? location.hash.replace('#', '') : 'home';
+        loadPage(start);
+
+        /* ---------- Lightbox ---------- */
+        function openLightbox(src) { const lb = document.getElementById('lightbox'); document.getElementById('lightbox-img').src = src; lb.style.display = 'flex'; }
+        function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+        window.openLightbox = openLightbox;
+        window.closeLightbox = closeLightbox;
+
+        /* ---------- Audio control (persistent) ---------- */
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const hint = document.getElementById('hint');
+        let playing = false;
+        function setPlayingState(state) {
+            playing = state;
+            if (playing) { musicBtn.classList.add('playing'); musicBtn.textContent = '▮▮'; localStorage.setItem('musicState', 'playing'); hint.style.display = 'none'; }
+            else { musicBtn.classList.remove('playing'); musicBtn.textContent = 'Play'; localStorage.setItem('musicState', 'paused'); }
+        }
+
+        // try autoplay (may be blocked)
+        function tryAutoplay() {
+            music.play().then(() => { setPlayingState(true); }).catch(err => { console.log('autoplay blocked', err); setPlayingState(false); hint.style.display = 'block'; });
+        }
+
+        // when user explicitly clicks intro, allow play
+        function enterSite() { const intro = document.getElementById('intro'); intro.style.transition = 'opacity .6s ease'; intro.style.opacity = 0; setTimeout(() => intro.style.display = 'none', 600); tryAutoplay(); }
+
+        // music toggle button
+        musicBtn.addEventListener('click', async () => {
+            if (!playing) { try { await music.play(); setPlayingState(true); } catch (e) { console.log('play failed', e); hint.style.display = 'block'; } }
+            else { music.pause(); setPlayingState(false); }
+        });
+
+        // resume if user left it playing earlier
+        if (localStorage.getItem('musicState') === 'playing') { tryAutoplay(); } else { musicBtn.textContent = 'Play'; }
+
+        // auto-hide intro after 5s and try autoplay
+        setTimeout(() => { const i = document.getElementById('intro'); if (i) { i.style.transition = 'opacity .8s ease'; i.style.opacity = 0; setTimeout(() => { if (document.getElementById('intro')) document.getElementById('intro').style.display = 'none'; }, 900); } tryAutoplay(); }, 5000);
+
+        // fallback: first user click anywhere should try play (if autoplay blocked)
+        document.addEventListener('click', function firstClick(e) {
+            if (playing) return document.removeEventListener('click', firstClick);
+            tryAutoplay();
+            document.removeEventListener('click', firstClick);
+        });
+
+        /* expose for debugging if needed */
+        window.tryAutoplay = tryAutoplay;
+    </script>
+</body>
+
+</html>

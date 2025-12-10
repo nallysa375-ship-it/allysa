@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>About — Nur Allysa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #57b9ff;
+            --muted: #5b6b72
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: Poppins, system-ui;
+            color: #06283D;
+            background: linear-gradient(135deg, #ffdfe8, #e6f7ff);
+            min-height: 100vh
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(9, 30, 63, 0.05);
+            z-index: 30
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px
+        }
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .brand .box {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #bfe9ff, var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700
+        }
+
+        .links a {
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            font-weight: 600
+        }
+
+        .links a.active {
+            background: var(--accent);
+            color: #fff
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 24px;
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap
+        }
+
+        .photo {
+            flex: 1;
+            min-width: 280px;
+            max-width: 360px
+        }
+
+        .photo img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 12px 30px rgba(8, 34, 56, 0.08)
+        }
+
+        .info {
+            flex: 2;
+            background: #fff;
+            border-radius: 14px;
+            padding: 26px;
+            box-shadow: 0 10px 30px rgba(6, 40, 61, 0.06)
+        }
+
+        h2 {
+            color: var(--accent)
+        }
+
+        p,
+        li {
+            color: var(--muted);
+            line-height: 1.6
+        }
+
+        #music-btn {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            z-index: 50;
+            cursor: pointer
+        }
+
+        @media(max-width:900px) {
+            main {
+                flex-direction: column;
+                align-items: center
+            }
+
+            .photo img {
+                height: 300px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="nav">
+            <div class="brand">
+                <div class="box">NA</div>
+                <div style="font-weight:700">Nur Allysa</div>
+            </div>
+            <nav class="links">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="achivements.html">Projects</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+                <a href="RESUME(1).pdf" target="_blank"
+                    style="background:var(--accent);color:#fff;padding:8px 12px;border-radius:10px">Download CV</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="photo"><img src="po.jpg" alt="Nur Allysa"></div>
+        <div class="info">
+            <h2>About Me</h2>
+            <p><strong>Nur Allysa binti Mohd Aidil</strong> — from Kulai, Johor. Currently pursuing Diploma in
+                Information Management (UiTM Johor, Segamat). Passionate about records management, metadata, and
+                creative digital work.</p>
+
+            <h3>Education</h3>
+            <ul>
+                <li>Diploma in Information Management — UiTM Johor (2023 – Present)</li>
+                <li>SPM — SMK Bandar Putra, Kulai (2017 – 2023) — Achieved 5A 1A- 2B 1C+</li>
+                <li>SK Bandar Putra (2011 – 2016)</li>
+                <li>SK Putra Utama (2010 – 2011)</li>
+            </ul>
+
+            <h3>Skills</h3>
+            <ul>
+                <li>Microsoft Office, File Management</li>
+                <li>Adobe Photoshop, Canva, CapCut</li>
+                <li>Basic MySQL & C++</li>
+                <li>Communication, teamwork, time management</li>
+            </ul>
+
+            <h3>Co-curricular</h3>
+            <ul>
+                <li>UiTM Marching Band — Committee Member</li>
+                <li>Participant — Merdeka Parade 2024 (Bandar Segamat)</li>
+                <li>Greenix Colorguard — Member</li>
+            </ul>
+
+            <h3>Career Objective</h3>
+            <p>To develop skills in information management and contribute to efficient record-keeping and organisation.
+            </p>
+        </div>
+    </main>
+
+    <!-- shared audio + script -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="Fade-Into-You.mp3" type="audio/mpeg">
+    </audio>
+    <button id="music-btn" aria-label="toggle music">Play</button>
+
+    <script>
+        const music = document.getElementById('bg-music'), btn = document.getElementById('music-btn'); let playing = false;
+        if (localStorage.getItem('musicState') === 'playing') { music.play().then(() => { playing = true; btn.textContent = 'Pause' }).catch(() => { btn.textContent = 'Play' }) } else { btn.textContent = 'Play' }
+        btn.addEventListener('click', async () => { if (!playing) { try { await music.play(); playing = true; btn.textContent = 'Pause'; localStorage.setItem('musicState', 'playing') } catch (e) { console.log('blocked') } } else { music.pause(); playing = false; btn.textContent = 'Play'; localStorage.setItem('musicState', 'paused') } });
+    </script>
+</body>
+
+</html>

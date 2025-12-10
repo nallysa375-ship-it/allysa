@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Achievements — Nur Allysa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #57b9ff;
+            --muted: #5b6b72;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Poppins, system-ui;
+            background: linear-gradient(135deg, #f6fbff 0%, #eaf7ff 40%, #fdf6ff 100%);
+            color: #06283D;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, .9);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(9, 30, 63, .05);
+            z-index: 30;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px;
+        }
+
+        .nav a {
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            font-weight: 600;
+        }
+
+        .nav a.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .main {
+            max-width: 1100px;
+            margin: 48px auto;
+            padding: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 12px 30px rgba(6, 40, 61, 0.06);
+            cursor: pointer;
+            transition: transform .18s;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Lightbox Gallery */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 999;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .5);
+        }
+
+        .lightbox button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            padding: 10px 18px;
+            border-radius: 10px;
+        }
+
+        .prev {
+            left: 30px;
+        }
+
+        .next {
+            right: 30px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 28px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        #music-btn {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            z-index: 50;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="nav">
+            <div style="font-weight:700">NA — Nur Allysa</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="achievements.html" class="active">Achievements</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <h2 style="color:var(--accent)">Achievements</h2>
+        <div class="grid">
+            <div class="card" onclick="openGallery('marching')">
+                <img src="march1.jpg" alt="Marching Band">
+                <h4>UiTM Marching Band — Committee</h4>
+                <p style="color:var(--muted)">Organised events and coordinated members for competitions.</p>
+            </div>
+
+            <div class="card" onclick="openGallery('parade')">
+                <img src="parade1.jpg" alt="Merdeka Parade">
+                <h4>Merdeka Parade 2024</h4>
+                <p style="color:var(--muted)">Participated in Merdeka parade at Bandar Segamat.</p>
+            </div>
+
+            <div class="card" onclick="openGallery('guard')">
+                <img src="guard1.jpg" alt="Colorguard">
+                <h4>Greenix Colorguard</h4>
+                <p style="color:var(--muted)">Choreography and team coordination for performances.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="close" onclick="closeGallery()">✕</button>
+        <button class="prev" onclick="prevImage()">❮</button>
+        <img id="lightbox-img" alt="">
+        <button class="next" onclick="nextImage()">❯</button>
+    </div>
+
+    <!-- Music -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="Fade-Into-You.mp3" type="audio/mpeg">
+    </audio>
+    <button id="music-btn">Play</button>
+
+    <script>
+        /* ---------- Music ---------- */
+        const music = document.getElementById('bg-music'),
+            btn = document.getElementById('music-btn');
+        let playing = false;
+
+        if (localStorage.getItem('musicState') === 'playing') {
+            music.play().then(() => { playing = true; btn.textContent = 'Pause' }).catch(() => { });
+        } else btn.textContent = 'Play';
+
+        btn.addEventListener('click', async () => {
+            if (!playing) {
+                await music.play(); playing = true; btn.textContent = 'Pause'; localStorage.setItem('musicState', 'playing');
+            } else {
+                music.pause(); playing = false; btn.textContent = 'Play'; localStorage.setItem('musicState', 'paused');
+            }
+        });
+
+        /* ---------- Gallery ---------- */
+        const galleries = {
+            marching: ['march1.jpg', 'march2.jpg', 'march3.jpg'],
+            parade: ['parade1.jpg', 'parade2.jpg', 'parade3.jpg'],
+            guard: ['guard1.jpg', 'guard2.jpg']
+        };
+
+        let currentGallery = [];
+        let currentIndex = 0;
+
+        function openGallery(key) {
+            currentGallery = galleries[key] || [];
+            currentIndex = 0;
+            if (currentGallery.length) {
+                document.getElementById('lightbox-img').src = currentGallery[currentIndex];
+                document.getElementById('lightbox').style.display = 'flex';
+            }
+        }
+
+        function closeGallery() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function nextImage() {
+            if (currentGallery.length) {
+                currentIndex = (currentIndex + 1) % currentGallery.length;
+                document.getElementById('lightbox-img').src = currentGallery[currentIndex];
+            }
+        }
+
+        function prevImage() {
+            if (currentGallery.length) {
+                currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+                document.getElementById('lightbox-img').src = currentGallery[currentIndex];
+            }
+        }
+    </script>
+</body>
+
+</html>

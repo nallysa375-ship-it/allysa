@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact — Nur Allysa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #57b9ff;
+            --muted: #5b6b72
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: Poppins;
+            background: linear-gradient(135deg, #fff6fb, #eefaff);
+            color: #06283D;
+            min-height: 100vh
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, .85);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(9, 30, 63, .05);
+            z-index: 30
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px
+        }
+
+        .nav a {
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            font-weight: 600
+        }
+
+        .main {
+            max-width: 800px;
+            margin: 56px auto;
+            padding: 20px
+        }
+
+        .card {
+            background: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(6, 40, 61, 0.06)
+        }
+
+        #music-btn {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            z-index: 50;
+            cursor: pointer
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="nav">
+            <div style="font-weight:700">NA — Nur Allysa</div>
+            <nav>
+                <a href="index.html">Home</a><a href="about.html">About</a><a href="skills.html">Skills</a>
+                <a href="achivements.html">Projects</a><a href="gallery.html">Gallery</a><a href="contact.html"
+                    style="background:var(--accent);color:#fff;padding:8px 12px;border-radius:10px">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="card">
+            <h2 style="color:var(--accent)">Contact</h2>
+            <p style="color:var(--muted)">Email: <a href="mailto:nallysa375@gmail.com"
+                    style="color:var(--accent)">nallysa375@gmail.com</a><br>Phone: 013-610 8370</p>
+            <hr style="margin:18px 0;border:none;border-top:1px solid #eef6ff">
+            <h3>Reference</h3>
+            <p style="color:var(--muted)"><strong>Dr Ahmad Fuzi Bin Md Ajis</strong><br>Undergraduate Program
+                Coordinator, Faculty of Information Management, UiTM Segamat<br>Phone: 07–935 2755 • Email: <a
+                    href="mailto:ahmadfuzi@uitm.edu.my" style="color:var(--accent)">ahmadfuzi@uitm.edu.my</a></p>
+        </div>
+    </main>
+
+    <audio id="bg-music" loop preload="auto">
+        <source src="Fade-Into-You.mp3" type="audio/mpeg">
+    </audio>
+    <button id="music-btn">Play</button>
+
+    <script>
+        const music = document.getElementById('bg-music'), btn = document.getElementById('music-btn'); let playing = false;
+        if (localStorage.getItem('musicState') === 'playing') { music.play().then(() => { playing = true; btn.textContent = 'Pause' }).catch(() => { btn.textContent = 'Play' }) } else { btn.textContent = 'Play' }
+        btn.addEventListener('click', async () => { if (!playing) { try { await music.play(); playing = true; btn.textContent = 'Pause'; localStorage.setItem('musicState', 'playing') } catch (e) { } } else { music.pause(); playing = false; btn.textContent = 'Play'; localStorage.setItem('musicState', 'paused') } });
+    </script>
+</body>
+
+</html>
